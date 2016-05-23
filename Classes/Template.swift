@@ -19,5 +19,12 @@ class Template: NSObject {
         }
     }
     
-    // TODO:  Do a blocks based API example
+    // Do a blocks based API example
+    // Reference: https://raw.githubusercontent.com/Kuggleland/kuggle-api-swift/master/Classes/KuggleAPI.swift
+    // And other project that isn't public
+    func registerUser(emailAddress: String, password: String, name: String, responseCompletionHandler: (result: AnyObject?, error: NSError?)) -> Void {
+        let response = ["result": []]
+        
+        responseCompletionHandler(result: response, error: nil)
+    }    
 }
