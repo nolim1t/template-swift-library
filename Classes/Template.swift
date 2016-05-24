@@ -19,12 +19,17 @@ class Template: NSObject {
         }
     }
     
-    // Do a blocks based API example
-    // Reference: https://raw.githubusercontent.com/Kuggleland/kuggle-api-swift/master/Classes/KuggleAPI.swift
-    // And other project that isn't public
-    func registerUser(emailAddress: String, password: String, name: String, responseCompletionHandler: (result: AnyObject?, error: NSError?)) -> Void {
-        let response = ["result": []]
-        
-        responseCompletionHandler(result: response, error: nil)
+    // Blocks based API example
+    func checkCredentials(responseCompletionHandler: (loggedIn: Bool, error: NSError?) -> Void) -> Void {
+        // Check something
+        let username = KeychainSwift.get("emailaddress")
+        let password = KeychainSwift.get("password")
+        if username != nil && password != nil {
+            // Probably not the best though, you should really check something on the server side
+            responseCompletionHandler(loggedIn: true, error: NSError(domain: "Do something cool", code: 0, userInfo: nil))
+            )
+        } else {
+            responseCompletionHandler(loggedIn: false, error: NSError(domain: "Not registered on this device", code: -1, userInfo: nil))
+        }
     }    
 }
